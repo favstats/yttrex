@@ -96,6 +96,17 @@ function boot () {
 }
 
 function testDivergency() {
+    /* 
+     * this function parse a list of URL and wish to open them automatically,
+     * using the internal messaging type 'opener' with as argument the list of URLs.
+     *
+     * This function is giving some inconsistencies (for example, you can't close the tab
+     * with bo.tags.remove because it block the sequence. If you suspend it (like it is 
+     * now in `chrome/background/opener.js` using bo.tags.discard(tab.id), when you click on
+     * the tab it restart, playing the video again, and if you switch tab it might or might
+     * not stop to open the others. That's why the first release would as you to do a manual
+     * opening
+     */
 
     $("#userName").text(pseudonym.get());
 
