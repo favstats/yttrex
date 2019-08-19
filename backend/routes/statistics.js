@@ -51,6 +51,10 @@ function statistics(req) {
     return mongo
         .read(nconf.get('schema').stats, filter)
         .map(function(e) {
+            _.each(_.keys(e), function(k) {
+                if(e[k] === 0)
+                  _.unset(e, k);
+            })
             return _.omit(e, ['_id'])
         })
         .then(function(content) {
